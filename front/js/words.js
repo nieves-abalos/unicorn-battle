@@ -1,4 +1,4 @@
-var words = [{
+words = [{
         "word": "gartner",
         "score": 100,
         "stemmword": "gartner"
@@ -398,4 +398,4 @@ var words = [{
         "score": 100,
         "stemmword": "bluetooth"
     }
-]
+];

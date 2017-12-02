@@ -43,6 +43,21 @@ function tokenize(text) {
 }
 
 /**
+ * Iterate over tokens list and get the
+ * steam of each one.
+ * @param {String Array} tokens
+ * @return {String Array} stems
+ */
+function stem(tokens) {
+    var stems = [];
+    for (var i = 0; i < tokens.length; i++) {
+        var token = tokens[i];
+        stems.push(stemmer(token));
+    }
+    return stems;
+}
+
+/**
  * Return intersection between keyword list
  * and ngrams provided.
  * @param {Object Array} keywords

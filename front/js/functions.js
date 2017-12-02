@@ -12,7 +12,7 @@ function ngrams(text, max) {
         for (var i = max; i > 0; i--) {
             var num = i;
             for (var j = 0; j <= text.length - num; j++) {
-                var candidate = text.slice(j, j+num).join(" ");
+                var candidate = text.slice(j, j + num).join(" ");
                 if (Boolean(candidate)) {
                     res.push(candidate);
                 }
@@ -30,8 +30,8 @@ function ngrams(text, max) {
  * @return {String Array} tokens
  */
 function tokenize(text) {
-    var raw     = text.split(" "),
-        tokens  = [];
+    var raw = text.split(" "),
+        tokens = [];
 
     for (var i = 0; i < raw.length; i++) {
         var candidate = raw[i].toLowerCase().trim();
@@ -65,7 +65,7 @@ function stem(tokens) {
  * @return {String Array} tokens
  */
 function intersection(keywords, ngramslist) {
-	var found = [];
+    var found = [];
     for (var i = 0; i < ngramslist.length; i++) {
         for (var j = 0; j < keywords.length; j++) {
             var keyword = keywords[j],
@@ -75,4 +75,50 @@ function intersection(keywords, ngramslist) {
         }
     }
     return found;
+}
+
+function createTeam() {
+    var storage = window.localStorage;
+
+    var id = storage.length;
+
+    var team = {
+        teamId: id,
+        words: {}, // {"internet of things":{count:1,score:100,..}}
+        scoreTotal: 0
+    }
+
+    var value = JSON.stringify(team);
+    storage.setItem(id, value);
+
+}
+
+//listWordScore=[{word, score}]
+function updateTeam(id, listWordScore) {
+    var storage = window.localStorage;
+    var item = storage.getItem(id);
+    var team = JSON.parse(item); // {attr: "value"}
+
+    //{ "internet of things":{ count: 3, score: 400, scorePartial: 1200 }}
+    listWordScore.forEach(element => {
+        if (team.words[element.word]) {
+            team.words[element.word].count = team.words[element.word].count + 1;
+            team.words[element.word].scorePartial =
+                team.words[element.word].scorePartial + team.words[element.word].score;
+        } else {
+            var word = {};
+            word[element.word] = {
+                count: 1,
+                score: element.score,
+                scorePartial: element.score
+            }
+            team.words.push(word);
+        }
+
+    });
+
+
+    var value = JSON.stringify(team);
+    storage.setItem(id, value);
+
 }

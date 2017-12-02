@@ -12,10 +12,12 @@ function init(){
 function processVoiceInput(text){
   console.log('User said', text);
   let tokenizedInput = tokenize(text);
-  let ngramedInput = ngrams(tokenizedInput, 2);
+  let stemmedInput = stem(tokenizedInput);
+  let ngramedInput = ngrams(stemmedInput, 2);
   let matchedWords = intersection(words, ngramedInput);
   if(matchedWords.length > 0){
     // Do something if there is a match
+    console.log('We matched', matchedWords);
   }
 }
 

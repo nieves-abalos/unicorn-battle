@@ -1,7 +1,9 @@
 
 var timeFromStart;
+var timeToReset;
 var recognizing;
-
+var refreshalId;
+var timeoutId = -1;
 // time to listen | liste time
 const listenFor = 60 * 1000;
 let lastKeyWord;
@@ -32,20 +34,40 @@ recognition.grammars = buildGrammar();
 recognition.onstart = function(){
   console.log('start');
   timeFromStart = Date.now();
+  timeToReset = Date.now() + 10 * 1000;
   recognizing = true;
-  setTimeout(function (){
-    if(recognizing) recognition.stop();
-  },listenFor);
+
+  if(timeoutId == -1){
+    timeoutId = setTimeout(function (){
+      console.log('Now it should fukcing stop');
+      clearInterval(refreshalId);
+      recognizing = false
+      recognition.stop();
+      timeoutId = -1;
+    }, listenFor);
+  }
+
+  if(refreshalId) clearInterval(refreshalId);
+  refreshalId = setInterval(function(){
+    console.log('INTERVAL');
+    if(recognizing && Date.now() >= timeToReset){
+      recognition.stop();
+      timeToReset = Date.now() + 10 * 1000;
+    }
+  }, 5000);
 }
 
 recognition.onend = function(){
   console.log('end');
-  recognizing = false;
+  if(recognizing && (Date.now() - timeFromStart) <= listenFor){
+    recognition.start();
+  }
+  else recognizing = false;
 }
 
 recognition.onerror = function(event) {
   console.log('Speech recognition error detected: ' + event.error);
-  recognizing = false;
+  recognition.start();
 }
 
 recognition.onnomatch = function(event) {
@@ -65,10 +87,6 @@ recognition.onresult = function(e) {
   else {
     // Aquí hay frases muy bien escritas
     let text = e.results[last][0].transcript;
-  }
-
-  if((Date.now() - timeFromStart) > listenFor){
-    recognition.stop();
   }
 }
 

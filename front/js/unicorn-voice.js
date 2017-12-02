@@ -4,8 +4,11 @@ var timeoutId = -1;
 const listenFor = 60 * 1000;
 
 function buildGrammar() {
-    var SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList,
-        grammar = '#JSGF V1.0; grammar colors; public <colors> = Gartner | Big | Data | Bootstrap | Cloud | Disruptive | Ecosystem | Freemium | Game | Changer | Gamification | Internet | Things| Lean | Startup | Leverage | effect | Tail | fruit | MVP | Revenues |  Minimal | MVP | Paradigm | Pivot | Tipping | Traction | Viral | Competition | Technology | Maping | Blockchain | IOT | Startup | Innovation | API | Dataset | Machine | Learning | Voice | Image | Recognition | APP | Application | Develop | Platform | Infrastructure | Automatic | Chatbot | Payment | Frontend | Backend | mobile | web | connect | software | intelligent | sensor | analytics | system | digital | assistant | process | monitor | remote | web | framework | security | computing | design | interoperability | comunication | gadget | user | algoritm | architecture | Accessibility | open | democratize | direct | bank | transport';
+    var SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+    var rawWords = words.map(function(item){
+      return item.word;
+    });
+    var grammar = '#JSGF V1.0; grammar test; public <simple> = ' + rawWords.join(' | ') + ' ;'
 
     var speechRecognitionList = new SpeechGrammarList();
     speechRecognitionList.addFromString(grammar, 1);

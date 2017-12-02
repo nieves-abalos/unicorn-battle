@@ -3,12 +3,14 @@
         document.addEventListener("keypress", function (e) {
             if (e.keyCode === 0 || e.keyCode === 32) {
                 e.preventDefault();
-                startVoiceRecognizer();
+                startVoiceRecognizer(processVoiceInput);
             }
         });
     }
 
-    function processVoiceInput(text){
+    function processVoiceInput(text) {
+        console.log(text);
+
         var tokens  = tokenize(text),
             stems   = stem(tokens),
             ngrms   = ngrams(stems, 3),

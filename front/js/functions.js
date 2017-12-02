@@ -128,3 +128,30 @@ function getTeam(id) {
     var team = JSON.parse(item);
     return team;
 }
+
+function createRanking() {
+    var storage = window.localStorage;
+    var ranking = {};
+
+    var value = JSON.stringify(ranking);
+    storage.setItem("ranking", value);
+}
+
+function setRanking(teamId, score) {
+    var storage = window.localStorage;
+    var item = storage.getItem("ranking");
+    var ranking = JSON.parse(item);
+
+    ranking[teamId] = score;
+
+    var value = JSON.stringify(ranking);
+    storage.setItem("ranking", value);
+}
+
+function getRanking() {
+    var storage = window.localStorage;
+    var item = storage.getItem("ranking");
+    var ranking = JSON.parse(item);
+
+    return ranking;
+}

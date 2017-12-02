@@ -3,7 +3,8 @@ var timeFromStart;
 var recognizing;
 
 // time to listen | liste time
-const listenFor = 5 * 1000;
+const listenFor = 60 * 1000;
+let lastKeyWord;
 
 function buildGrammar(){
   var SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
@@ -55,8 +56,10 @@ recognition.onresult = function(e) {
   if(!e.results[e.results.length - 1][0].isFinal){
     let last = e.results.length - 1;
     let text = e.results[last][0].transcript;
-
     console.error(text);
+    if(lastKeyWord && text !== lastKeyWord)
+      processVoiceInput(text);
+    lastKeyWord = text;
     // Aquí hacer algo con las palabras detectadas
   }
   else {

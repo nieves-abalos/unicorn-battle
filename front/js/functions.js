@@ -129,28 +129,55 @@ function getTeam(id) {
     return team;
 }
 
-function createRanking() {
+function createRankingTeam() {
     var storage = window.localStorage;
     var ranking = {};
 
     var value = JSON.stringify(ranking);
-    storage.setItem("ranking", value);
+    storage.setItem("rankingTeams", value);
 }
 
-function setRanking(teamId, score) {
+function setRankingTeam(teamId, score) {
     var storage = window.localStorage;
-    var item = storage.getItem("ranking");
+    var item = storage.getItem("rankingTeams");
     var ranking = JSON.parse(item);
 
     ranking[teamId] = score;
 
     var value = JSON.stringify(ranking);
-    storage.setItem("ranking", value);
+    storage.setItem("rankingTeams", value);
 }
 
-function getRanking() {
+function getRankingTeam() {
     var storage = window.localStorage;
-    var item = storage.getItem("ranking");
+    var item = storage.getItem("rankingTeams");
+    var ranking = JSON.parse(item);
+
+    return ranking;
+}
+
+function createRankingWords() {
+    var storage = window.localStorage;
+    var ranking = {};
+
+    var value = JSON.stringify(ranking);
+    storage.setItem("rankingWords", value);
+}
+
+function setRankingWords(word, addCount) {
+    var storage = window.localStorage;
+    var item = storage.getItem("rankingWords");
+    var ranking = JSON.parse(item);
+
+    ranking[word] = ranking[word] + addCount;
+
+    var value = JSON.stringify(ranking);
+    storage.setItem("rankingWords", value);
+}
+
+function getRankingWords() {
+    var storage = window.localStorage;
+    var item = storage.getItem("rankingWords");
     var ranking = JSON.parse(item);
 
     return ranking;

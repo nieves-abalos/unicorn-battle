@@ -122,3 +122,10 @@ function updateTeam(id, listWordScore) {
     storage.setItem(id, value);
 
 }
+
+function getTeam(id) {
+    var storage = window.localStorage;
+    var item = storage.getItem(id);
+    var team = JSON.parse(item);
+    return team;
+}

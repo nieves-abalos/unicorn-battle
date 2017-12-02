@@ -69,7 +69,7 @@ function intersection(keywords, ngramslist) {
     for (var i = 0; i < ngramslist.length; i++) {
         for (var j = 0; j < keywords.length; j++) {
             var keyword = keywords[j],
-                detected = (keyword.word === ngramslist[i]);
+                detected = (keyword.stemmword === ngramslist[i]);
 
             if (detected) found.push(keyword);
         }

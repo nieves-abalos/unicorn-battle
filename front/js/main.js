@@ -1,26 +1,27 @@
-function init(){
-  // Temporal event trigger with space bar
-  $(window).keypress(function (e) {
-    if (e.keyCode === 0 || e.keyCode === 32) {
-      e.preventDefault()
-      console.log('Space pressed');
-      startVoiceRecognizer();
+(function() {
+    function bindRecognition() {
+        document.addEventListener("keypress", function (e) {
+            if (e.keyCode === 0 || e.keyCode === 32) {
+                e.preventDefault();
+                startVoiceRecognizer();
+            }
+        });
     }
-  });
-}
 
-function processVoiceInput(text){
-  console.log('User said', text);
-  let tokenizedInput = tokenize(text);
-  let stemmedInput = stem(tokenizedInput);
-  let ngramedInput = ngrams(stemmedInput, 2);
-  let matchedWords = intersection(words, ngramedInput);
-  if(matchedWords.length > 0){
-    // Do something if there is a match
-    console.log('We matched', matchedWords);
-  }
-}
+    function processVoiceInput(text){
+        var tokens  = tokenize(text),
+            stems   = stem(tokens),
+            ngrms   = ngrams(stems, 3),
+            matched = intersection(words, ngrms);
 
-$( document ).ready(function() {
-  init();
-});
+        if (matched.length > 0) {
+            // Do something if there is a match
+        }
+    }
+
+    function main() {
+        bindRecognition();
+    }
+
+    main();
+})();

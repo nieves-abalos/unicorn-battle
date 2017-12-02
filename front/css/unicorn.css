@@ -1,0 +1,17 @@
+html, body, .container-fluid {
+    height:100%;
+    background-color: #b2e1f5;
+    font-family: 'Raleway', sans-serif;
+}
+.menusrow {
+    height: 80%;
+}
+.navrow {
+    height: 5%;
+}
+.brandrow {
+    height: 15%;
+}
+.menusrow .row {
+    height: 20%;
+}

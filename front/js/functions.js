@@ -78,47 +78,46 @@ function intersection(keywords, ngramslist) {
 }
 
 function createTeam() {
-    var storage = window.localStorage;
-
-    var id = storage.length;
+    var storage = window.localStorage,
+        id      = storage.length;
 
     var team = {
         teamId: id,
         words: {}, // {"internet of things":{count:1,score:100,..}}
         scoreTotal: 0
-    }
+    };
 
     var value = JSON.stringify(team);
     storage.setItem(id, value);
-
 }
 
-//listWordScore=[{word, score}]
 function updateTeam(id, listWordScore) {
-    var storage = window.localStorage;
-    var item = storage.getItem(id);
-    var team = JSON.parse(item); // {attr: "value"}
+    var storage = window.localStorage,
+        item    = storage.getItem(id),
+        team    = JSON.parse(item);
 
-    //{ "internet of things":{ count: 3, score: 400, scorePartial: 1200 }}
-    listWordScore.forEach(element => {
-        if (team.words[element.word]) {
-            team.words[element.word].count = team.words[element.word].count + 1;
-            team.words[element.word].scorePartial =
-                team.words[element.word].scorePartial + team.words[element.word].score;
-        } else {
-            var word = {};
-            word[element.word] = {
-                count: 1,
-                score: element.score,
-                scorePartial: element.score
+    if (team) {
+        for (var index in listWordScore) {
+            if (listWordScore.hasOwnProperty(index)) {
+                var element = listWordScore[index];
+
+                if (team.words[element.word]) {
+                    team.words[element.word].count = team.words[element.word].count + 1;
+                    team.words[element.word].scorePartial = team.words[element.word].scorePartial + team.words[element.word].score;
+                } else {
+                    var word = {};
+                    word[element.word] = {
+                        count: 1,
+                        score: element.score,
+                        scorePartial: element.score
+                    };
+
+                    team.words.push(word);
+                }
             }
-            team.words.push(word);
         }
 
-    });
-
-
-    var value = JSON.stringify(team);
-    storage.setItem(id, value);
-
+        var value = JSON.stringify(team);
+        storage.setItem(id, value);
+    }
 }

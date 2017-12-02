@@ -30,8 +30,8 @@ function ngrams(text, max) {
  * @return {String Array} tokens
  */
 function tokenize(text) {
-    var raw = text.split(" "),
-        tokens = [];
+    var raw     = text.split(" "),
+        tokens  = [];
 
     for (var i = 0; i < raw.length; i++) {
         var candidate = raw[i].toLowerCase().trim();
@@ -40,6 +40,21 @@ function tokenize(text) {
         }
     }
     return tokens;
+}
+
+/**
+ * Iterate over tokens list and get the
+ * steam of each one.
+ * @param {String Array} tokens
+ * @return {String Array} stems
+ */
+function stem(tokens) {
+    var stems = [];
+    for (var i = 0; i < tokens.length; i++) {
+        var token = tokens[i];
+        stems.push(stemmer(token));
+    }
+    return stems;
 }
 
 /**

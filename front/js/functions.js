@@ -30,8 +30,8 @@ function ngrams(text, max) {
  * @return {String Array} tokens
  */
 function tokenize(text) {
-    var raw = text.split(" "),
-        tokens = [];
+    var raw     = text.split(" "),
+        tokens  = [];
 
     for (var i = 0; i < raw.length; i++) {
         var candidate = raw[i].toLowerCase().trim();

@@ -45,7 +45,7 @@ var words = [{
     },
     {
         "word": "internet of things",
-        "score": 400,
+        "score": 500,
         "stemmword": "internet of th"
     },
     {
@@ -205,6 +205,11 @@ var words = [{
     },
     {
         "word": "chatbot",
+        "score": 500,
+        "stemmword": "chatbot"
+    },
+    {
+        "word": "chatbots",
         "score": 500,
         "stemmword": "chatbot"
     },
@@ -592,5 +597,75 @@ var words = [{
         "word": "demo",
         "score": 300,
         "stemmword": "demo"
+    },
+    {
+        "word": "alexa",
+        "score": 300,
+        "stemmword": "alexa"
+    },
+    {
+        "word": "google home",
+        "score": 300,
+        "stemmword": "google hom"
+    },
+    {
+        "word": "sap",
+        "score": 200,
+        "stemmword": "sap"
+    },
+    {
+        "word": "daimler",
+        "score": 200,
+        "stemmword": "daimler"
+    },
+    {
+        "word": "clover",
+        "score": 200,
+        "stemmword": "clover"
+    },
+    {
+        "word": "deutsche bank",
+        "score": 200,
+        "stemmword": "deutsche bank"
+    },
+    {
+        "word": "devpost",
+        "score": 200,
+        "stemmword": "devpost"
+    },
+    {
+        "word": "esri",
+        "score": 200,
+        "stemmword": "esri"
+    },
+    {
+        "word": "universe",
+        "score": 200,
+        "stemmword": "univers"
+    },
+    {
+        "word": "techcrunch disrupt",
+        "score": 200,
+        "stemmword": "techcrunch disrupt"
+    },
+    {
+        "word": "techcrunch",
+        "score": 200,
+        "stemmword": "techcrunch"
+    },
+    {
+        "word": "talent",
+        "score": 200,
+        "stemmword": "talent"
+    },
+    {
+        "word": "cat",
+        "score": 1000,
+        "stemmword": "cat"
+    },
+    {
+        "word": "cats",
+        "score": 1000,
+        "stemmword": "cat"
     }
-]
+];

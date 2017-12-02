@@ -3,45 +3,64 @@
 
           <link rel="stylesheet" href="css/bootstrap.min.css">
           <link rel="stylesheet" type="" href="css/unicorn.css">
-          <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900" rel="stylesheet">
 
           <script src="js/jquery-3.2.1.min.js"></script>
           <script src="js/bootstrap.min.js"></script>
           <script src="js/d3.min.js"></script>
           <script src="js/cloud.js"></script>
-          
 
         </head>
         <body>
 
             <div class="container-fluid">
-                <div class="row">
-                  <h2 class="text-center">Startup 1</h2>
+                <div class="row titlerow">
+                  <h2 class="text-center startup-name">Team 1</h2>
                 </div>
-                <div class="row menusrow">
-                    <div class="col-xs-12 col-md-12 border1">
+                <div class="row wordrow">
+                    <div class="col-xs-12 col-md-12">
                         <div class="row">
                             <div class="col-xs-12 col-md-12 word-cloud-container">
                                 <div id="chart"></div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
 
-                <div class="row navrow">
-                    <div class="col-xs-12 col-md-12" style="text-align:right;"></div>
-                </div>
-                <div class="row brandrow">
-                    <div class="col-xs-12  col-md-6 border2">
-                         
+                <div class="row rankingrow">
+                    <div class="col-xs-1  col-md-1">
+                        <div class="cloud left"></div>
+                    </div>
+                    <div class="col-xs-10  col-md-10">
+                        <div class="rainbow"></div>
+                        <div class="ranking-indicator" style="left: 12%;">
+                            <span class="team">t2</span>
+                            <span class="points">180</span>
+                        </div>
+                        <div class="ranking-indicator first" style="left: 79%;">
+                            <span class="team">t12</span>
+                            <span class="points">792</span>
+                        </div>
+                        <div class="ranking-indicator second"  style="left: 65%;">
+                            <span class="team">t32</span>
+                            <span class="points">654</span>
+                        </div>
+                        <div class="ranking-indicator third"  style="left: 60%;">
+                            <span class="team">t26</span>
+                            <span class="points">604</span>
+                        </div>
+                    </div>
+                    <div class="col-xs-1  col-md-1">
+                        <div class="cloud right"></div>
+                        <div class="unicorn-meme"><img src="img/unicorn-circle.gif" alt=""></div>
                     </div>
                 </div>
             </div>
 
-          
-
-
           <script src="js/unicorn-words.js"></script>
+          <script src="js/unicorn-voice.js"></script>
+          <script src="js/functions.js"></script>
+          <script src="js/words.js"></script>
+          <script src="js/main.js"></script>
         </body>
       </html>

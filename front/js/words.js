@@ -45,7 +45,7 @@ words = [{
     },
     {
         "word": "internet of things",
-        "score": 400,
+        "score": 500,
         "stemmword": "internet of th"
     },
     {
@@ -205,6 +205,11 @@ words = [{
     },
     {
         "word": "chatbot",
+        "score": 500,
+        "stemmword": "chatbot"
+    },
+    {
+        "word": "chatbots",
         "score": 500,
         "stemmword": "chatbot"
     },
@@ -397,5 +402,270 @@ words = [{
         "word": "bluetooth",
         "score": 100,
         "stemmword": "bluetooth"
+    },
+    {
+        "word": "personalize",
+        "score": 100,
+        "stemmword": "person"
+    },
+    {
+        "word": "trial",
+        "score": 100,
+        "stemmword": "trial"
+    },
+    {
+        "word": "engagement",
+        "score": 300,
+        "stemmword": "engag"
+    },
+    {
+        "word": "ai",
+        "score": 500,
+        "stemmword": "ai"
+    },
+    {
+        "word": "integrate",
+        "score": 100,
+        "stemmword": "integr"
+    },
+    {
+        "word": "business inteligence",
+        "score": 200,
+        "stemmword": "business intelig"
+    },
+    {
+        "word": "network",
+        "score": 100,
+        "stemmword": "network"
+    },
+    {
+        "word": "biometric",
+        "score": 400,
+        "stemmword": "biometr"
+    },
+    {
+        "word": "authentification",
+        "score": 400,
+        "stemmword": "authentif"
+    },
+    {
+        "word": "install",
+        "score": 100,
+        "stemmword": "instal"
+    },
+    {
+        "word": "device",
+        "score": 100,
+        "stemmword": "devic"
+    },
+    {
+        "word": "code",
+        "score": 100,
+        "stemmword": "code"
+    },
+    {
+        "word": "online",
+        "score": 100,
+        "stemmword": "onlin"
+    },
+    {
+        "word": "download",
+        "score": 100,
+        "stemmword": "download"
+    },
+    {
+        "word": "upload",
+        "score": 100,
+        "stemmword": "upload"
+    },
+    {
+        "word": "creative",
+        "score": 100,
+        "stemmword": "creativ"
+    },
+    {
+        "word": "scalable",
+        "score": 200,
+        "stemmword": "scalabl"
+    },
+    {
+        "word": "interactive",
+        "score": 200,
+        "stemmword": "interact"
+    },
+    {
+        "word": "modeling",
+        "score": 100,
+        "stemmword": "model"
+    },
+    {
+        "word": "interface",
+        "score": 200,
+        "stemmword": "interfac"
+    },
+    {
+        "word": "server",
+        "score": 100,
+        "stemmword": "server"
+    },
+    {
+        "word": "unicorn",
+        "score": 600,
+        "stemmword": "unicorn"
+    },
+    {
+        "word": "branding",
+        "score": 100,
+        "stemmword": "brand"
+    },
+    {
+        "word": "crowdsource",
+        "score": 300,
+        "stemmword": "crowdsourc"
+    },
+    {
+        "word": "early adopter",
+        "score": 500,
+        "stemmword": "early adopt"
+    },
+    {
+        "word": "pipeline",
+        "score": 200,
+        "stemmword": "pipelin"
+    },
+    {
+        "word": "virtual reality",
+        "score": 400,
+        "stemmword": "virtual r"
+    },
+    {
+        "word": "mixed reality",
+        "score": 500,
+        "stemmword": "mixed r"
+    },
+    {
+        "word": "augmented reality",
+        "score": 500,
+        "stemmword": "augmented r"
+    },
+    {
+        "word": "bitcoin",
+        "score": 600,
+        "stemmword": "bitcoin"
+    },
+    {
+        "word": "ico",
+        "score": 700,
+        "stemmword": "ico"
+    },
+    {
+        "word": "crypto",
+        "score": 700,
+        "stemmword": "crypto"
+    },
+    {
+        "word": "cryptocurrency",
+        "score": 700,
+        "stemmword": "cryptocurr"
+    },
+    {
+        "word": "currency",
+        "score": 400,
+        "stemmword": "currenc"
+    },
+    {
+        "word": "artifical intelligence",
+        "score": 500,
+        "stemmword": "artifical intellig"
+    },
+    {
+        "word": "natural language processing",
+        "score": 400,
+        "stemmword": "natural language process"
+    },
+    {
+        "word": "voice",
+        "score": 300,
+        "stemmword": "voic"
+    },
+    {
+        "word": "pitch",
+        "score": 300,
+        "stemmword": "pitch"
+    },
+    {
+        "word": "demo",
+        "score": 300,
+        "stemmword": "demo"
+    },
+    {
+        "word": "alexa",
+        "score": 300,
+        "stemmword": "alexa"
+    },
+    {
+        "word": "google home",
+        "score": 300,
+        "stemmword": "google hom"
+    },
+    {
+        "word": "sap",
+        "score": 200,
+        "stemmword": "sap"
+    },
+    {
+        "word": "daimler",
+        "score": 200,
+        "stemmword": "daimler"
+    },
+    {
+        "word": "clover",
+        "score": 200,
+        "stemmword": "clover"
+    },
+    {
+        "word": "deutsche bank",
+        "score": 200,
+        "stemmword": "deutsche bank"
+    },
+    {
+        "word": "devpost",
+        "score": 200,
+        "stemmword": "devpost"
+    },
+    {
+        "word": "esri",
+        "score": 200,
+        "stemmword": "esri"
+    },
+    {
+        "word": "universe",
+        "score": 200,
+        "stemmword": "univers"
+    },
+    {
+        "word": "techcrunch disrupt",
+        "score": 200,
+        "stemmword": "techcrunch disrupt"
+    },
+    {
+        "word": "techcrunch",
+        "score": 200,
+        "stemmword": "techcrunch"
+    },
+    {
+        "word": "talent",
+        "score": 200,
+        "stemmword": "talent"
+    },
+    {
+        "word": "cat",
+        "score": 1000,
+        "stemmword": "cat"
+    },
+    {
+        "word": "cats",
+        "score": 1000,
+        "stemmword": "cat"
     }
 ];

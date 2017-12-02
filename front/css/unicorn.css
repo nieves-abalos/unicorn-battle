@@ -3,15 +3,99 @@ html, body, .container-fluid {
     background-color: #b2e1f5;
     font-family: 'Raleway', sans-serif;
 }
-.menusrow {
-    height: 80%;
+
+.titlerow h2 {
+    font-weight: 900;
+    font-size: 50;
+    text-transform: uppercase;
+    background: transparent url(../img/bullshit-bingo-flag.png) no-repeat center center;
+    padding: 10px 10px 20px;
 }
+
+svg text {
+    font-weight: 700;
+}
+
+.wordrow {
+    height: 70%;
+}
+
 .navrow {
     height: 5%;
 }
-.brandrow {
-    height: 15%;
+.rankingrow {
+    /* border-top: 2px solid #29abe2; */
+    padding-top: 40px;
 }
-.menusrow .row {
-    height: 20%;
+
+.rankingrow .cloud {
+    background: transparent url(../img/bullshit-bingo-cloud.png) no-repeat top left;
+    width: 123px;
+    height: 89px;
+    margin-top: -25px;
 }
+.rankingrow .cloud.left {
+    position: absolute;
+    right: -60px;
+    z-index: 100;
+}
+.rankingrow .cloud.right {
+    position: absolute;
+    left: -60px;
+    z-index: 100;
+}
+
+.rankingrow .unicorn-meme {
+    max-width: 0;
+    position: absolute;
+    top: -250px;
+}
+.rankingrow .unicorn-meme img{
+    max-width: 200px;
+    float: right;
+}
+
+.rankingrow .rainbow {
+    background: transparent url(../img/bullshit-bingo-rainbow.png) repeat-x top left;
+    width: 100%;
+    height: 50px;
+}
+.ranking-indicator {
+    position: absolute;
+    display: block;
+    height: 80px;
+    width: 140px;
+    top: -80px;
+    background: transparent url(../img/bullshit-bingo-unicorn.png) no-repeat left top;
+}
+.ranking-indicator .team{
+    display: block;
+    font-size: 2em;
+    width: 65px;
+    text-align: center;
+    padding-top: 10px;
+    font-weight: 700;
+}
+.ranking-indicator .points{
+    display: block;
+    font-size: 1em;
+    width: 65px;
+    text-align: center;
+    color: white;
+    padding-top: 2px;
+}
+.ranking-indicator.first {
+    width: 140px;
+    background: transparent url(../img/bullshit-bingo-gold.png) no-repeat left top;
+}
+.ranking-indicator.second {
+    width: 140px;
+    background: transparent url(../img/bullshit-bingo-silver.png) no-repeat left top;
+}
+.ranking-indicator.third {
+    width: 140px;
+    background: transparent url(../img/bullshit-bingo-bronze.png) no-repeat left top;
+}
+
+
+

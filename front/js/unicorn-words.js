@@ -25,7 +25,7 @@ var words = text_string.split(/[ '\-\(\)\*":;\[\]|{},.!?]+/);
 
 var svg_location = "#chart";
 var width = $(document).width();
-var height = $(document).height()-300;
+var height = $(document).height()-400;
 
 // var color1 = '#b5ea77';
 // var color2 = '#4CAF50';
@@ -68,7 +68,7 @@ function draw(words) {
         .data(words)
     .enter().append("text")
         .style("font-size", function(d) { return xScale(d.value) + "px"; })
-        .style("font-family", "Impact")
+        .style("font-family", "Raleway")
         .style("fill", function(d, i) { return color(i); })
         .attr("text-anchor", "middle")
         .attr("transform", function(d) {

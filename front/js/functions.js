@@ -52,16 +52,11 @@ function tokenize(text) {
 function intersection(keywords, ngramslist) {
 	var found = [];
     for (var i = 0; i < ngramslist.length; i++) {
-        for (var key in keywords) {
-            if (keywords.hasOwnProperty(key)) {
-                var detected = (key === ngramslist[i]);
-                if (detected) {
-                    found.push({
-                        keyword: key,
-                        score: keywords[key]
-                    });
-                }
-            }
+        for (var j = 0; j < keywords.length; j++) {
+            var keyword = keywords[j],
+                detected = (keyword.word === ngramslist[i]);
+
+            if (detected) found.push(keyword);
         }
     }
     return found;

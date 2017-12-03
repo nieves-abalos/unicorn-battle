@@ -63,39 +63,50 @@ svg text {
 .ranking-indicator {
     position: absolute;
     display: block;
-    height: 80px;
+    height: 95px;
     width: 140px;
-    top: -80px;
+    top: -95px;
     background: transparent url(../img/bullshit-bingo-unicorn.png) no-repeat left top;
+    -webkit-transition: 1s ease-out;
+    -moz-transition: 1s ease-out;
+    -o-transition: 1s ease-out;
+    transition: 1s ease-out;
+    z-index: 100;
 }
 .ranking-indicator .team{
     display: block;
     font-size: 2em;
-    width: 65px;
+    width: 83px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 18px;
     font-weight: 700;
 }
 .ranking-indicator .points{
     display: block;
-    font-size: 1em;
-    width: 65px;
+    font-size: 1.2em;
+    width: 83px;
     text-align: center;
     color: white;
-    padding-top: 2px;
+    padding-top: 0px;
 }
 .ranking-indicator.first {
     width: 140px;
     background: transparent url(../img/bullshit-bingo-gold.png) no-repeat left top;
+    z-index: 99;
 }
 .ranking-indicator.second {
     width: 140px;
     background: transparent url(../img/bullshit-bingo-silver.png) no-repeat left top;
+    z-index: 98;
 }
 .ranking-indicator.third {
     width: 140px;
     background: transparent url(../img/bullshit-bingo-bronze.png) no-repeat left top;
+    z-index: 97;
 }
 
 
 
+/* fill: #FFEB3B;
+    stroke-width: 2px;
+    stroke: black; */

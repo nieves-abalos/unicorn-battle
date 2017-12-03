@@ -139,7 +139,12 @@ function getTeam(id) {
 
 function createRankingTeam() {
     var storage = window.localStorage;
+    var item = storage.getItem("rankingTeams");
     var ranking = {};
+
+    if (item) {
+        ranking = item;
+    }
 
     var value = JSON.stringify(ranking);
     storage.setItem("rankingTeams", value);

@@ -168,6 +168,11 @@ function createRankingWords() {
     var storage = window.localStorage;
     var ranking = {};
 
+    for (w = 0; w < words.length; w++) {
+        var key = words[w].word;
+        ranking[key] = 0;
+    }
+
     var value = JSON.stringify(ranking);
     storage.setItem("rankingWords", value);
 }

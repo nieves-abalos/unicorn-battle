@@ -1,7 +1,7 @@
 var timeFromStart, timeToReset, recognizing, refreshalId, lastKeyWord;
 var timeoutId = -1;
 
-const listenFor = 60 * 1000;
+const listenFor = 10 * 1000;
 
 function buildGrammar() {
     var SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;

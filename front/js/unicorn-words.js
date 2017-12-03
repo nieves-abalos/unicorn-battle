@@ -104,7 +104,7 @@ var current = {
     }
 }
 
-const MAX_RANKING = 2000;
+const MAX_RANKING = 20000;
 
 function update() {
     console.log("update")
@@ -121,19 +121,24 @@ function setRanking( ranking ) {
     }
     
     _ranking.sort(function(a, b) {
-        return a[1] - b[1];
+        return b[1] - a[1];
     });
+
 
     var indicators = document.getElementsByClassName("ranking-indicator");
     var teams = document.getElementsByClassName("team");
     var points = document.getElementsByClassName("points");
 
-    if (_ranking.length > 0)
-    for (let i = 1; i < (4 || indicators.length || _ranking.length ); i++) {
-        let pos = (_ranking[i-1][0] * 100) / MAX_RANKING;
-        indicators[i].setAttribute("style", "left: "+pos+"%");
-        teams[i].innerHTML = "t"+ _ranking[i-1][0];
-        points[i].innerHTML = ""+_ranking[i-1][1];
+    console.log("Ranking: "+_ranking)
+    for (let i = 0;  i < indicators.length-1; i++) {
+        console.log("R i: "+_ranking[i])
+        if (_ranking[i]) {
+            console.log((_ranking[i][1] * 100) / MAX_RANKING)
+            let pos = (_ranking[i][1] * 100) / MAX_RANKING;
+            indicators[i+1].setAttribute("style", "left: "+pos+"%");
+            teams[i+1].innerHTML = "t"+ _ranking[i][0];
+            points[i+1].innerHTML = ""+_ranking[i][1];
+        }
     }
     
 }

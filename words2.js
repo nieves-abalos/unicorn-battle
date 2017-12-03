@@ -1,4 +1,4 @@
-words = [{
+var words = [{
         "word": "gartner",
         "score": 100,
         "stemmword": "gartner"

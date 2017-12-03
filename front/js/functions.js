@@ -12,7 +12,7 @@ function ngrams(text, max) {
         for (var i = max; i > 0; i--) {
             var num = i;
             for (var j = 0; j <= text.length - num; j++) {
-                var candidate = text.slice(j, j+num).join(" ");
+                var candidate = text.slice(j, j + num).join(" ");
                 if (Boolean(candidate)) {
                     res.push(candidate);
                 }
@@ -30,8 +30,8 @@ function ngrams(text, max) {
  * @return {String Array} tokens
  */
 function tokenize(text) {
-    var raw     = text.split(" "),
-        tokens  = [];
+    var raw = text.split(" "),
+        tokens = [];
 
     for (var i = 0; i < raw.length; i++) {
         var candidate = raw[i].toLowerCase().trim();
@@ -65,14 +65,128 @@ function stem(tokens) {
  * @return {String Array} tokens
  */
 function intersection(keywords, ngramslist) {
-	var found = [];
+    var found = [];
     for (var i = 0; i < ngramslist.length; i++) {
         for (var j = 0; j < keywords.length; j++) {
             var keyword = keywords[j],
-                detected = (keyword.word === ngramslist[i]);
+                detected = (keyword.stemmword === ngramslist[i]);
 
             if (detected) found.push(keyword);
         }
     }
     return found;
+}
+
+function createTeam() {
+    var storage = window.localStorage,
+        id = storage.length - 2;
+
+    var team = {
+        teamId: id,
+        words: {}, // {"internet of things":{count:1,score:100,..}}
+        scoreTotal: 0
+    };
+
+    var value = JSON.stringify(team);
+    storage.setItem(id, value);
+    return id;
+}
+
+function updateTeam(id, listWordScore) {
+    var storage = window.localStorage,
+        item = storage.getItem(id),
+        team = JSON.parse(item);
+
+    var increment = {};
+
+    if (team) {
+        for (var index in listWordScore) {
+            if (listWordScore.hasOwnProperty(index)) {
+                var element = listWordScore[index];
+
+                if (team.words[element.word]) {
+                    team.words[element.word].count = team.words[element.word].count + 1;
+                    team.words[element.word].scorePartial = team.words[element.word].scorePartial + team.words[element.word].score;
+                    setRankingWords(element.word, 1);
+                    increment[element.word] = 1; // WARNING! check this is true
+                } else {
+                    var word = {};
+                    team.words[element.word] = {
+                        count: 1,
+                        score: element.score,
+                        scorePartial: element.score
+                    };
+
+                    setRankingWords(element.word, 1);
+                    increment[element.word] = 1;
+                }
+                team.scoreTotal = team.scoreTotal + element.score;
+            }
+        }
+
+        var value = JSON.stringify(team);
+        storage.setItem(id, value);
+    }
+    return increment;
+}
+
+function getTeam(id) {
+    var storage = window.localStorage;
+    var item = storage.getItem(id);
+    var team = JSON.parse(item);
+    return team;
+}
+
+function createRankingTeam() {
+    var storage = window.localStorage;
+    var ranking = {};
+
+    var value = JSON.stringify(ranking);
+    storage.setItem("rankingTeams", value);
+}
+
+function setRankingTeam(teamId, score) {
+    var storage = window.localStorage;
+    var item = storage.getItem("rankingTeams");
+    var ranking = JSON.parse(item);
+
+    ranking[teamId] = score;
+
+    var value = JSON.stringify(ranking);
+    storage.setItem("rankingTeams", value);
+}
+
+function getRankingTeam() {
+    var storage = window.localStorage;
+    var item = storage.getItem("rankingTeams");
+    var ranking = JSON.parse(item);
+
+    return ranking;
+}
+
+function createRankingWords() {
+    var storage = window.localStorage;
+    var ranking = {};
+
+    var value = JSON.stringify(ranking);
+    storage.setItem("rankingWords", value);
+}
+
+function setRankingWords(word, addCount) {
+    var storage = window.localStorage;
+    var item = storage.getItem("rankingWords");
+    var ranking = JSON.parse(item);
+
+    ranking[word] = ranking[word] + addCount;
+
+    var value = JSON.stringify(ranking);
+    storage.setItem("rankingWords", value);
+}
+
+function getRankingWords() {
+    var storage = window.localStorage;
+    var item = storage.getItem("rankingWords");
+    var ranking = JSON.parse(item);
+
+    return ranking;
 }

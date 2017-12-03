@@ -13,7 +13,8 @@
                 var rankWords = getRankingWords();
                 word_count = rankWords;
                 ranking = rankTeams;
-                setRanking( rankTeams );
+                setRanking( idTeam, rankTeams );
+
                 drawWordCloud( rankWords, update );
                 
             }

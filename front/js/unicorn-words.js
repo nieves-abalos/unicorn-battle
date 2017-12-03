@@ -97,9 +97,10 @@ function update() {
     // setIncrement( current );
 }
 
-function setRanking( ranking ) {
+function setRanking( idTeam, ranking ) {
     console.log(ranking)
-
+    var teamName = document.getElementsByClassName("startup-name")[0];
+    teamName.innerHTML = "Team "+idTeam;
     var _ranking = [];
     for (var team in ranking) {
         if (ranking.hasOwnProperty(team))

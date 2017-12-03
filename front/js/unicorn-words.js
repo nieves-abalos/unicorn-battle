@@ -31,7 +31,7 @@ function drawWordCloud( currentWords, callback ){
             return d.value;
         })
         ])
-        .range([10,100]);
+        .range([12,100]);
 
     d3.layout.cloud().size([width, height])
         .timeInterval(20)
@@ -167,7 +167,6 @@ function updateCurrentTeam(team) {
     indicators[0].setAttribute("style", "left: "+pos+"%");
     teams[0].innerHTML = "t"+ team.teamId;
     points[0].innerHTML = ""+ team.scoreTotal;
-    drawWordCloud(null, update);
 
 }
 

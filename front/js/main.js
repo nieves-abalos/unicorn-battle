@@ -22,6 +22,8 @@
 
                 console.error(increment, team);
                 setRankingTeam(idTeam, team.scoreTotal);
+                drawWordCloud(null, update);
+
                 setIncrement(increment)
 
             }
@@ -58,7 +60,7 @@
       word_count = rankWords;
       ranking = rankTeams;
       setRanking( idTeam, rankTeams );
-      drawWordCloud( null, update );
+      drawWordCloud(null, update);
     }
 
     function main() {

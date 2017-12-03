@@ -79,7 +79,7 @@ function intersection(keywords, ngramslist) {
 
 function createTeam() {
     var storage = window.localStorage,
-        id = storage.length - 2;
+        id = storage.length - 3;
 
     var team = {
         teamId: id,

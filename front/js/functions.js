@@ -69,7 +69,7 @@ function intersection(keywords, ngramslist) {
     for (var i = 0; i < ngramslist.length; i++) {
         for (var j = 0; j < keywords.length; j++) {
             var keyword = keywords[j],
-                detected = (keyword.word === ngramslist[i]);
+                detected = (keyword.stemmword === ngramslist[i]);
 
             if (detected) found.push(keyword);
         }
@@ -79,7 +79,7 @@ function intersection(keywords, ngramslist) {
 
 function createTeam() {
     var storage = window.localStorage,
-        id = storage.length;
+        id = storage.length - 2;
 
     var team = {
         teamId: id,
@@ -89,12 +89,15 @@ function createTeam() {
 
     var value = JSON.stringify(team);
     storage.setItem(id, value);
+    return id;
 }
 
 function updateTeam(id, listWordScore) {
     var storage = window.localStorage,
         item = storage.getItem(id),
         team = JSON.parse(item);
+
+    var increment = {};
 
     if (team) {
         for (var index in listWordScore) {
@@ -104,22 +107,27 @@ function updateTeam(id, listWordScore) {
                 if (team.words[element.word]) {
                     team.words[element.word].count = team.words[element.word].count + 1;
                     team.words[element.word].scorePartial = team.words[element.word].scorePartial + team.words[element.word].score;
+                    setRankingWords(element.word, 1);
+                    increment[element.word] = 1; // WARNING! check this is true
                 } else {
                     var word = {};
-                    word[element.word] = {
+                    team.words[element.word] = {
                         count: 1,
                         score: element.score,
                         scorePartial: element.score
                     };
 
-                    team.words.push(word);
+                    setRankingWords(element.word, 1);
+                    increment[element.word] = 1;
                 }
+                team.scoreTotal = team.scoreTotal + element.score;
             }
         }
 
         var value = JSON.stringify(team);
         storage.setItem(id, value);
     }
+    return increment;
 }
 
 function getTeam(id) {

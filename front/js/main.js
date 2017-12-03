@@ -11,6 +11,9 @@
                 //send event with this data:
                 var rankTeams = getRankingTeam();
                 var rankWords = getRankingWords();
+                word_count = rankWords;
+                ranking = rankTeams;
+                drawWordCloud(ranking, update); 
                 console.log(rankTeams, rankWords);
             }
         });

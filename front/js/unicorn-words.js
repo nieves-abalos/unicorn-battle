@@ -1,86 +1,5 @@
 
-var word_count = {
-    "gartner": 100,
-    "big data": 200,
-    "bootstrap": 200,
-    "cloud": 300,
-    "disruptive": 400,
-    "ecosystem": 100,
-    "freemium": 300,
-    "game changer": 200,
-    "gamification": 100,
-    "internet of things": 400,
-    "lean startup": 300,
-    "leverage": 100,
-    "lock-in effect": 100,
-    "long tail": 200,
-    "low hanging fruit": 100,
-    "mvp": 400,
-    "revenues estimates": 200,
-    "minimal viable product": 400,
-    "paradigm shift": 200,
-    "pivot": 200,
-    "tipping point": 100,
-    "traction": 300,
-    "viral marketing": 100,
-    "competition": 100,
-    "technology": 200,
-    "maping": 100,
-    "blockchain": 500,
-    "iot": 400,
-    "startup": 200,
-    "innovation": 200,
-    "api": 300,
-    "dataset": 200,
-    "machine learning": 500,
-    "voice recognition": 400,
-    "image recognition": 400,
-    "app": 200,
-    "application": 200,
-    "develop": 100,
-    "platform": 200,
-    "infrastructure": 200,
-    "automatic": 100,
-    "chatbot": 500,
-    "payment": 300,
-    "frontend": 200,
-    "backend": 200,
-    "mobile": 100,
-    "web": 100,
-    "connect": 100,
-    "software": 100,
-    "intelligent": 400,
-    "sensor": 300,
-    "analytics": 300,
-    "system": 100,
-    "digital": 100,
-    "assistant": 500,
-    "process": 100,
-    "monitor": 100,
-    "remote": 100,
-    "web services": 200,
-    "framework": 300,
-    "security": 100,
-    "computing": 100,
-    "design": 100,
-    "interoperability": 200,
-    "comunication": 100,
-    "gadget": 100,
-    "user": 100,
-    "algorithm": 300,
-    "architecture": 200,
-    "accessibility": 100,
-    "open source": 100,
-    "democratize": 400,
-    "direct democracy": 400,
-    "bank": 300,
-    "transport": 200,
-    "delivery": 300,
-    "parking": 200,
-    "mobility": 200,
-    "search": 100,
-    "bluetooth": 100
-}
+var word_count = {}
 
 function drawWordCloud( currentWords, callback ){
 
@@ -197,6 +116,7 @@ function update() {
 }
 
 function setRanking( ranking, current ) {
+    console.log(ranking)
     var indicators = document.getElementsByClassName("ranking-indicator");
     var teams = document.getElementsByClassName("team");
     var points = document.getElementsByClassName("points");
@@ -231,26 +151,26 @@ function setRanking( ranking, current ) {
 
 $( document ).ready(function() {
 
-    drawWordCloud(null, update);
+    // drawWordCloud(null, update);
 
-    setTimeout( function() {
-        let newWords = {
-            id: 4,
-            points: 80,
-            score: 40,
-            words: {
-                "blockchain": 450
-            }
-        }
-        let prevWords = current.words;
-        Object.assign(prevWords, newWords.words);
-        Object.assign(current, newWords);
-        current.words = prevWords;
-        console.log(current)
+    // setTimeout( function() {
+    //     let newWords = {
+    //         id: 4,
+    //         points: 80,
+    //         score: 40,
+    //         words: {
+    //             "blockchain": 450
+    //         }
+    //     }
+    //     let prevWords = current.words;
+    //     Object.assign(prevWords, newWords.words);
+    //     Object.assign(current, newWords);
+    //     current.words = prevWords;
+    //     console.log(current)
         
-        setRanking(ranking, current)
+    //     setRanking(ranking, current)
 
-    }, 3000)
+    // }, 3000)
 
 
 });

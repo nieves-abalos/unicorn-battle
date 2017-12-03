@@ -100,37 +100,60 @@ var current = {
     points: 50,
     score: 20,
     words: {
-        "machine learning": 500,
-        "image recognition": 400,
-        "application": 200,
-        "platform": 200,
-        "automatic": 100,
-        "chatbot": 500
+        
     }
 }
 
+const MAX_RANKING = 2000;
 
 function update() {
-
-    setRanking(ranking, current);
+    console.log("update")
+    setRanking( ranking );
+    setIncrement( current );
 }
 
-function setRanking( ranking, current ) {
+function setRanking( ranking ) {
     console.log(ranking)
+
+    var _ranking = [];
+    for (var team in ranking) {
+        _ranking.push([team, ranking[team]]);
+    }
+    
+    _ranking.sort(function(a, b) {
+        return a[1] - b[1];
+    });
+
     var indicators = document.getElementsByClassName("ranking-indicator");
     var teams = document.getElementsByClassName("team");
     var points = document.getElementsByClassName("points");
+
+    if (_ranking.length > 0)
+    for (let i = 1; i < (4 || indicators.length || _ranking.length ); i++) {
+        let pos = (_ranking[i-1][0] * 100) / MAX_RANKING;
+        indicators[i].setAttribute("style", "left: "+pos+"%");
+        teams[i].innerHTML = "t"+ _ranking[i-1][0];
+        points[i].innerHTML = ""+_ranking[i-1][1];
+    }
+    
+}
+
+var increment = {}
+
+function setIncrement( current ) {
     var unicorngif = document.getElementById("unicorn-gif");
+    
+    if (Object.keys(current).length > 0){
 
-    if (current) {
-        indicators[0].setAttribute("style", "left: "+current.score+"%");
-        teams[0].innerHTML = "t"+current.id;
-        points[0].innerHTML = ""+current.points;
-        if (Object.keys(current.words).length > 0){
+            Object.assign(increment, current);
+            for (var w in current){
+                if (current.hasOwnProperty(w)) {
+                    //if (word_count[w] > 400) mod_words[w] = parseFloat(word_count[w])*2;
+                    word_count[w] = word_count[w] + current[w];
+                }
+            }
 
-            Object.assign(word_count, current.words);
-
-            drawWordCloud( current.words )
+            drawWordCloud( increment )
 
             unicorngif.classList.toggle("hidden");
             fua.play();
@@ -138,15 +161,8 @@ function setRanking( ranking, current ) {
             setTimeout(function() {
                 unicorngif.classList.toggle("hidden");
             }, 1200)
-        }
     }
 
-    for (let i = 1; i < indicators.length; i++) {
-        indicators[i].setAttribute("style", "left: "+ranking[i-1].score+"%");
-        teams[i].innerHTML = ""+ranking[i-1].id;
-        points[i].innerHTML = ""+ranking[i-1].points;
-    }
-    
 }
 
 $( document ).ready(function() {

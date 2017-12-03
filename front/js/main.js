@@ -7,13 +7,14 @@
                 e.preventDefault();
                 startVoiceRecognizer(processVoiceInput);
                 idTeam = createTeam();
-
+                increment = {}
                 //send event with this data:
                 var rankTeams = getRankingTeam();
                 var rankWords = getRankingWords();
                 word_count = rankWords;
                 ranking = rankTeams;
-                drawWordCloud(ranking, update); 
+                setRanking( ranking );
+                drawWordCloud( ranking, update );
                 console.log(rankTeams, rankWords);
             }
         });
@@ -39,7 +40,7 @@
 
             console.error(increment, team);
             setRankingTeam(idTeam, team.scoreTotal);
-
+            setIncrement(increment)
         }
     }
 

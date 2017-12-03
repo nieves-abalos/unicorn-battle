@@ -140,11 +140,7 @@ function getTeam(id) {
 function createRankingTeam() {
     var storage = window.localStorage;
     var item = storage.getItem("rankingTeams");
-    var ranking = {};
-
-    if (item) {
-        ranking = item;
-    }
+    var ranking = JSON.parse(item) || {};
 
     var value = JSON.stringify(ranking);
     storage.setItem("rankingTeams", value);
@@ -154,7 +150,7 @@ function setRankingTeam(teamId, score) {
     var storage = window.localStorage;
     var item = storage.getItem("rankingTeams");
     var ranking = JSON.parse(item);
-    console.log(ranking);
+    console.log(typeof(ranking));
 
 
     if (score) {
@@ -163,7 +159,7 @@ function setRankingTeam(teamId, score) {
         ranking[teamId] = 0;
     }
 
-    console.log(ranking);
+    // console.log(ranking);
     var value = JSON.stringify(ranking);
     storage.setItem("rankingTeams", value);
 }

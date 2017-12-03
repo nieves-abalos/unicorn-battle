@@ -52,7 +52,7 @@ function drawWordCloud( currentWords, callback ){
             .append("g")
             .attr("transform", "translate(" + [width >> 1, height >> 1] + ")")
             .selectAll("text")
-            .data(words)
+            .data( words )
             .enter().append("text")
             .style("font-size", function(d) { return xScale(d.value) + "px"; })
             .style("font-family", "Raleway")
@@ -89,27 +89,12 @@ function drawWordCloud( currentWords, callback ){
 
 var fua = new Audio('sound/fua.wav');
 
-var ranking = [
-    { id: 1, points: 300, score: 85 },
-    { id: 2, points: 200, score: 65 },
-    { id: 3, points: 120, score: 45 }
-]
-
-var current = {
-    id: 5,
-    points: 50,
-    score: 20,
-    words: {
-        
-    }
-}
 
 const MAX_RANKING = 20000;
-
 function update() {
     console.log("update")
-    setRanking( ranking );
-    setIncrement( current );
+    // setRanking( ranking );
+    // setIncrement( current );
 }
 
 function setRanking( ranking ) {
@@ -117,30 +102,31 @@ function setRanking( ranking ) {
 
     var _ranking = [];
     for (var team in ranking) {
-        _ranking.push([team, ranking[team]]);
+        if (ranking.hasOwnProperty(team))
+            _ranking.push([team, ranking[team]]);
     }
     
     _ranking.sort(function(a, b) {
         return b[1] - a[1];
     });
 
-
     var indicators = document.getElementsByClassName("ranking-indicator");
     var teams = document.getElementsByClassName("team");
     var points = document.getElementsByClassName("points");
 
-    console.log("Ranking: "+_ranking)
     for (let i = 0;  i < indicators.length-1; i++) {
-        console.log("R i: "+_ranking[i])
         if (_ranking[i]) {
-            console.log((_ranking[i][1] * 100) / MAX_RANKING)
-            let pos = (_ranking[i][1] * 100) / MAX_RANKING;
+            let pos = getRankingPos(_ranking[i][1]);
             indicators[i+1].setAttribute("style", "left: "+pos+"%");
             teams[i+1].innerHTML = "t"+ _ranking[i][0];
             points[i+1].innerHTML = ""+_ranking[i][1];
         }
     }
     
+}
+
+function getRankingPos( value ) {
+    return (value * 100) / MAX_RANKING;
 }
 
 var increment = {}
@@ -169,6 +155,7 @@ function setIncrement( current ) {
     }
 
 }
+
 
 $( document ).ready(function() {
 

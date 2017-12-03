@@ -13,8 +13,8 @@
                 var rankWords = getRankingWords();
                 word_count = rankWords;
                 ranking = rankTeams;
-                setRanking( ranking );
-                drawWordCloud( ranking, update );
+                setRanking( rankTeams );
+                drawWordCloud( rankWords, update );
                 console.log(rankTeams, rankWords);
             }
         });
@@ -35,6 +35,7 @@
 
             //send event with this data: data for the cloud of the team and team info
             var team = getTeam(idTeam); // get scoreTotal
+            updateCurrentTeam(team);
             //incremento de palabras >>>>> increment
 
             console.error(increment, team);

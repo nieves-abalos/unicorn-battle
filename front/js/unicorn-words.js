@@ -156,6 +156,19 @@ function setIncrement( current ) {
 
 }
 
+function updateCurrentTeam(team) {
+    var indicators = document.getElementsByClassName("ranking-indicator");
+    var teams = document.getElementsByClassName("team");
+    var points = document.getElementsByClassName("points");
+
+    
+    let pos = getRankingPos(team.scoreTotal);
+    indicators[0].setAttribute("style", "left: "+pos+"%");
+    teams[0].innerHTML = "t"+ team.teamId;
+    points[0].innerHTML = ""+ team.scoreTotal;
+    
+}
+
 
 $( document ).ready(function() {
 

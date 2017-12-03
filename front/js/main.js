@@ -15,7 +15,7 @@
                 ranking = rankTeams;
                 setRanking( rankTeams );
                 drawWordCloud( rankWords, update );
-                console.log(rankTeams, rankWords);
+                
             }
         });
     }

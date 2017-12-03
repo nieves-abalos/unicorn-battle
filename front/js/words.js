@@ -429,9 +429,9 @@ words = [{
         "stemmword": "integr"
     },
     {
-        "word": "business inteligence",
+        "word": "business intelligence",
         "score": 200,
-        "stemmword": "business intelig"
+        "stemmword": "business intellig"
     },
     {
         "word": "network",

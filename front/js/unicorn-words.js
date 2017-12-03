@@ -1,5 +1,7 @@
 
 var word_count = {}
+var width = $(document).width();
+var height = $(document).height() - 320;
 
 function drawWordCloud( currentWords, callback ){
 
@@ -12,8 +14,6 @@ function drawWordCloud( currentWords, callback ){
     }
 
     var svg_location = "#chart";
-    var width = $(document).width();
-    var height = $(document).height()-400;
 
     var color1 = '#999999';
     var color2 = '#111111';
@@ -56,22 +56,22 @@ function drawWordCloud( currentWords, callback ){
             .enter().append("text")
             .style("font-size", function(d) { return xScale(d.value) + "px"; })
             .style("font-family", "Raleway")
-            .style("fill", function(d, i) { 
+            .style("fill", function(d, i) {
                 if (currentWords) {
                     if (d.key in currentWords) {
-                        return "#FFEB3B" 
+                        return "#FFEB3B"
                     } else return color(i)
                 } else {
                     console.info("no currentWords")
-                    return color(i); 
+                    return color(i);
                 }
             })
-            .style("stroke-width", function(d, i) { 
+            .style("stroke-width", function(d, i) {
                 if (currentWords) {
                     if (d.key in currentWords) return "1px"
                 }
             })
-            .style("stroke", function(d, i) { 
+            .style("stroke", function(d, i) {
                 if (currentWords) {
                     if (d.key in currentWords) return "black"
                 }
@@ -105,7 +105,7 @@ function setRanking( ranking ) {
         if (ranking.hasOwnProperty(team))
             _ranking.push([team, ranking[team]]);
     }
-    
+
     _ranking.sort(function(a, b) {
         return b[1] - a[1];
     });
@@ -122,7 +122,7 @@ function setRanking( ranking ) {
             points[i+1].innerHTML = ""+_ranking[i][1];
         }
     }
-    
+
 }
 
 function getRankingPos( value ) {
@@ -133,7 +133,7 @@ var increment = {}
 
 function setIncrement( current ) {
     var unicorngif = document.getElementById("unicorn-gif");
-    
+
     if (Object.keys(current).length > 0){
 
             Object.assign(increment, current);
@@ -175,7 +175,7 @@ $( document ).ready(function() {
     //     Object.assign(current, newWords);
     //     current.words = prevWords;
     //     console.log(current)
-        
+
     //     setRanking(ranking, current)
 
     // }, 3000)

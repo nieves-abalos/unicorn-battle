@@ -14,8 +14,16 @@
                 word_count = rankWords;
                 ranking = rankTeams;
                 setRanking( rankTeams );
-                drawWordCloud( rankWords, update );
-                
+                //drawWordCloud( rankWords, update );
+
+                var team = getTeam(idTeam); // get scoreTotal
+                updateCurrentTeam(team);
+                //incremento de palabras >>>>> increment
+
+                console.error(increment, team);
+                setRankingTeam(idTeam, team.scoreTotal);
+                setIncrement(increment)
+
             }
         });
     }

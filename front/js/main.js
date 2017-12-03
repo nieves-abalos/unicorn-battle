@@ -24,8 +24,7 @@
         console.log(text);
 
         var tokens = tokenize(text),
-            stems = stem(tokens),
-            ngrms = ngrams(stems, 3),
+            ngrms = ngrams(tokens, 3),
             matched = intersection(words, ngrms);
 
         if (matched.length > 0) {

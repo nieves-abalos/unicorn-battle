@@ -69,7 +69,7 @@ function intersection(keywords, ngramslist) {
     for (var i = 0; i < ngramslist.length; i++) {
         for (var j = 0; j < keywords.length; j++) {
             var keyword = keywords[j],
-                detected = (keyword.stemmword === ngramslist[i]);
+                detected = (keyword.word === ngramslist[i]);
 
             if (detected) found.push(keyword);
         }
@@ -149,6 +149,8 @@ function setRankingTeam(teamId, score) {
     var storage = window.localStorage;
     var item = storage.getItem("rankingTeams");
     var ranking = JSON.parse(item);
+    console.log(ranking);
+
 
     if (score) {
         ranking[teamId] = score;
@@ -156,7 +158,7 @@ function setRankingTeam(teamId, score) {
         ranking[teamId] = 0;
     }
 
-
+    console.log(ranking);
     var value = JSON.stringify(ranking);
     storage.setItem("rankingTeams", value);
 }

@@ -52,10 +52,20 @@
         }
     }
 
+    function populateViz(){
+      var rankTeams = getRankingTeam();
+      var rankWords = getRankingWords();
+      word_count = rankWords;
+      ranking = rankTeams;
+      setRanking( idTeam, rankTeams );
+      drawWordCloud( null, update );
+    }
+
     function main() {
         bindRecognition();
         createRankingTeam();
         createRankingWords();
+        populateViz();
     }
 
     main();

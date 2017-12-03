@@ -150,7 +150,12 @@ function setRankingTeam(teamId, score) {
     var item = storage.getItem("rankingTeams");
     var ranking = JSON.parse(item);
 
-    ranking[teamId] = score;
+    if (score) {
+        ranking[teamId] = score;
+    } else {
+        ranking[teamId] = 0;
+    }
+
 
     var value = JSON.stringify(ranking);
     storage.setItem("rankingTeams", value);

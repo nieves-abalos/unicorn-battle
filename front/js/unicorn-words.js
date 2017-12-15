@@ -1,6 +1,6 @@
 
 var word_count = {}
-var width = $(document).width();
+var width = $(document).width()/2;
 var height = $(document).height() - 320;
 
 function drawWordCloud( currentWords, callback ){

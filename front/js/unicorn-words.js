@@ -194,5 +194,23 @@ $( document ).ready(function() {
 
     // }, 3000)
 
+    document.querySelector("form.video-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        var videoUrl = document.querySelector(".video-url").value;
+        $('.video-area').prettyEmbed({
+            videoID: videoUrl.split("/watch?v=")[1],
+            previewSize: 'hd',				// use either this option...
+            // customPreviewImage: '',			// ...or this option
+        
+            // Embed controls
+            showInfo: false,
+            showControls: true,
+            loop: false,
+            colorScheme: 'dark',
+            showRelated: false,
+            useFitVids: true
+        });
+        return false;
+    })
 
 });

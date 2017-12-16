@@ -2,6 +2,85 @@
     var idTeam = -1;
 
     function bindRecognition() {
+
+        document.querySelector("form.video-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            var videoUrl = document.querySelector(".video-url").value;
+            var videoId = videoUrl.split("/watch?v=")[1];
+    
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+            
+            var done = false;
+            var lastVideo = '';
+            function onPlayerStateChange(event) {
+                // if (event.data == YT.PlayerState.PLAYING && !done) {
+                videoUrl = document.querySelector(".video-url").value;
+                videoId = videoUrl.split("/watch?v=")[1];
+                if (event.data == YT.PlayerState.PLAYING) {
+                    // ToDo: Control video title and volume
+
+                    // console.info("For: "+ player.getDuration() + " seconds")
+                    setListenTime( player.getDuration() );
+                    startVoiceRecognizer(processVoiceInput);
+                    console.log(lastVideo + " - " + videoId)
+                    if ( lastVideo != videoId ) {
+                        idTeam = createTeam();
+                        increment = {}
+                        //send event with this data:
+                        var rankTeams = getRankingTeam();
+                        var rankWords = getRankingWords();
+                        word_count = rankWords;
+                        ranking = rankTeams;
+                        setRanking( idTeam, rankTeams, player.getVideoData().title );
+                        //drawWordCloud( rankWords, update );
+
+                        var team = getTeam(idTeam); // get scoreTotal
+                        updateCurrentTeam(team);
+                        //incremento de palabras >>>>> increment
+
+                        console.error(increment, team);
+                        setRankingTeam(idTeam, team.scoreTotal);
+                        drawWordCloud(null, update);
+
+                        setIncrement(increment);
+
+                        lastVideo = videoId;
+                    }
+
+                    done = true;
+
+                } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                    
+                    stopVoiceRecognizer()
+                    // ToDo: Pop-up to publish score into the ranking?? :-/
+                    // console.log("For: "+ player.getDuration() + " seconds")
+                    // console.log("Title: "+ player.getVideoData().title + "")
+                }
+            }
+            function stopVideo() {
+                player.stopVideo();
+            }
+            if (player == null) {
+                player = new YT.Player('video-area', {
+                    // height: '360',
+                    // width: '640',
+                    videoId: videoId,
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            } else {
+                player.loadVideoById(videoId, 0);
+            }
+            
+            
+            return false;
+        })
+
+
         document.addEventListener("keypress", function(e) {
             if (e.keyCode === 0 || e.keyCode === 32) {
                 e.preventDefault();

@@ -97,10 +97,10 @@ function update() {
     // setIncrement( current );
 }
 
-function setRanking( idTeam, ranking ) {
+function setRanking( idTeam, ranking, currentStartupName ) {
     console.log(ranking)
     var teamName = document.getElementsByClassName("startup-name")[0];
-    teamName.innerHTML = "Team "+idTeam;
+    teamName.innerHTML = currentStartupName || "Team "+idTeam;
     var _ranking = [];
     for (var team in ranking) {
         if (ranking.hasOwnProperty(team))
@@ -119,7 +119,21 @@ function setRanking( idTeam, ranking ) {
         if (_ranking[i]) {
             let pos = getRankingPos(_ranking[i][1]);
             indicators[i+1].setAttribute("style", "left: "+pos+"%");
-            teams[i+1].innerHTML = "t"+ _ranking[i][0];
+            // switch (i) {
+            //     case 0:
+            //         teams[i+1].textContent = `🥇`
+            //         break;
+            //     case 1:
+            //         teams[i+1].textContent = `🥈`
+            //         break;
+            //     case 2:
+            //         teams[i+1].textContent = `🥉`
+            //         break;
+            
+            //     default:
+            //         break;
+            // }
+            teams[i+1].innerHTML = `${i+1}&ordm;`; //"T"+ _ranking[i][0];
             points[i+1].innerHTML = ""+_ranking[i][1];
         }
     }
@@ -165,11 +179,17 @@ function updateCurrentTeam(team) {
 
     let pos = getRankingPos(team.scoreTotal);
     indicators[0].setAttribute("style", "left: "+pos+"%");
-    teams[0].innerHTML = "t"+ team.teamId;
+    teams[0].innerHTML = 'YOU'; //"t"+ team.teamId;
     points[0].innerHTML = ""+ team.scoreTotal;
 
 }
 
+var player;
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 $( document ).ready(function() {
 
@@ -194,23 +214,8 @@ $( document ).ready(function() {
 
     // }, 3000)
 
-    document.querySelector("form.video-form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        var videoUrl = document.querySelector(".video-url").value;
-        $('.video-area').prettyEmbed({
-            videoID: videoUrl.split("/watch?v=")[1],
-            previewSize: 'hd',				// use either this option...
-            // customPreviewImage: '',			// ...or this option
-        
-            // Embed controls
-            showInfo: false,
-            showControls: true,
-            loop: false,
-            colorScheme: 'dark',
-            showRelated: false,
-            useFitVids: true
-        });
-        return false;
-    })
-
 });
+
+
+
+

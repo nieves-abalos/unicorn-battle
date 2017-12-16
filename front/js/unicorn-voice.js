@@ -1,7 +1,10 @@
 var timeFromStart, timeToReset, recognizing, refreshalId, lastKeyWord;
 var timeoutId = -1;
 
-const listenFor = 60 * 1000;
+let listenFor = 60 * 1000;
+function setListenTime( seconds ) {
+    listenFor = seconds * 1000;
+}
 
 function buildGrammar() {
     var SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
@@ -37,10 +40,10 @@ recognition.onstart = function() {
 
     if (timeoutId === -1) {
         timeoutId = setTimeout(function() {
-        clearInterval(refreshalId);
-        recognizing = false;
-        recognition.stop();
-        timeoutId = -1;
+            clearInterval(refreshalId);
+            recognizing = false;
+            recognition.stop();
+            timeoutId = -1;
         }, listenFor);
     }
 
@@ -96,4 +99,11 @@ function startVoiceRecognizer(callback) {
     recognition.onresult = function (e) {
         onResult(e, callback);
     }
+}
+
+function stopVoiceRecognizer() {
+    clearInterval(refreshalId);
+    recognizing = false;
+    recognition.stop();
+    timeoutId = -1;
 }

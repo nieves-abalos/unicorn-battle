@@ -4,6 +4,7 @@ html, body, .container-fluid {
     font-family: 'Raleway', sans-serif;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 /* Split layout */
@@ -16,6 +17,7 @@ html, body, .container-fluid {
     height : 100%;
     display: block;
     text-align: center;
+    overflow: auto;
 }
 .right {
     /* display : flex; */
@@ -36,11 +38,14 @@ html, body, .container-fluid {
 
 
 .titlerow h2 {
-    font-weight: 900;
-    font-size: 50;
+    font-weight: 700;
+    font-size: 1.5em;
     text-transform: uppercase;
     background: transparent url(../img/bullshit-bingo-flag.png) no-repeat center center;
-    padding: 10px 10px 20px;
+    padding: 20px 40px 42px;
+    max-width: 590px;
+    margin: 1em auto 0;
+    text-overflow: ellipsis;
 }
 
 svg text {
@@ -55,8 +60,7 @@ svg text {
     height: 5%;
 }
 .rankingrow {
-    /* border-top: 2px solid #29abe2; */
-    padding-top: 40px;
+    padding: 2em 1em 0;
 }
 
 .rankingrow .cloud {
@@ -106,10 +110,10 @@ svg text {
 }
 .ranking-indicator .team{
     display: block;
-    font-size: 2em;
+    font-size: 1em;
     width: 83px;
     text-align: center;
-    padding-top: 18px;
+    padding-top: 30px;
     font-weight: 700;
 }
 .ranking-indicator .points{
@@ -118,7 +122,7 @@ svg text {
     width: 83px;
     text-align: center;
     color: white;
-    padding-top: 0px;
+    padding-top: 10px;
 }
 .ranking-indicator.first {
     width: 140px;
@@ -138,8 +142,40 @@ svg text {
 
 /* VIDEO FORM */
 
-.video-form {
+/* .video-form {
 
+} */
+
+.unicornbattle-title {
+    font-weight: 700;
+}
+
+.left-side nav {
+    color: #333;
+    margin: 1em;
+}
+.left-side nav a {
+    color: #333;
+    margin: 0 1em;
+}
+.left-side nav a.active, .left-side nav a:hover {
+    border-bottom: 2px solid #b2e1f5;
+    text-decoration: none;
+}
+
+.video-input {
+    width: 90%;
+    margin: 1em auto;
+    overflow: auto;
+}
+
+input.form-control.video-url {
+    width: 70%;
+    float: left;
+}
+button.process-video {
+    width: 29%;
+    float: right;
 }
 
 .video-form h4 span{
@@ -151,5 +187,12 @@ svg text {
     height: 1.6em;
     font-weight: bold;
     text-align: center;
-    margin: 2em auto 1em;
+    margin: 1.5em auto 0.5em;
+}
+
+#video-area {
+    width: 90%;
+    max-height: 320px;
+    border: 0px solid #EEE;
+    margin: 0 auto;
 }

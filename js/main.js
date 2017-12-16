@@ -19,8 +19,7 @@
                 videoUrl = document.querySelector(".video-url").value;
                 videoId = videoUrl.split("/watch?v=")[1];
                 if (event.data == YT.PlayerState.PLAYING) {
-                    // ToDo: Control video title and volume
-
+                    // ToDo: Control video volume
                     // console.info("For: "+ player.getDuration() + " seconds")
                     setListenTime( player.getDuration() );
                     startVoiceRecognizer(processVoiceInput);
@@ -80,33 +79,33 @@
             return false;
         })
 
+        // OLD: Space bar feature  
+        // document.addEventListener("keypress", function(e) {
+        //     if (e.keyCode === 0 || e.keyCode === 32) {
+        //         e.preventDefault();
+        //         startVoiceRecognizer(processVoiceInput);
+        //         idTeam = createTeam();
+        //         increment = {}
+        //         //send event with this data:
+        //         var rankTeams = getRankingTeam();
+        //         var rankWords = getRankingWords();
+        //         word_count = rankWords;
+        //         ranking = rankTeams;
+        //         setRanking( idTeam, rankTeams );
+        //         //drawWordCloud( rankWords, update );
 
-        document.addEventListener("keypress", function(e) {
-            if (e.keyCode === 0 || e.keyCode === 32) {
-                e.preventDefault();
-                startVoiceRecognizer(processVoiceInput);
-                idTeam = createTeam();
-                increment = {}
-                //send event with this data:
-                var rankTeams = getRankingTeam();
-                var rankWords = getRankingWords();
-                word_count = rankWords;
-                ranking = rankTeams;
-                setRanking( idTeam, rankTeams );
-                //drawWordCloud( rankWords, update );
+        //         var team = getTeam(idTeam); // get scoreTotal
+        //         updateCurrentTeam(team);
+        //         //incremento de palabras >>>>> increment
 
-                var team = getTeam(idTeam); // get scoreTotal
-                updateCurrentTeam(team);
-                //incremento de palabras >>>>> increment
+        //         console.error(increment, team);
+        //         setRankingTeam(idTeam, team.scoreTotal);
+        //         drawWordCloud(null, update);
 
-                console.error(increment, team);
-                setRankingTeam(idTeam, team.scoreTotal);
-                drawWordCloud(null, update);
+        //         setIncrement(increment)
 
-                setIncrement(increment)
-
-            }
-        });
+        //     }
+        // });
     }
 
     function processVoiceInput(text) {

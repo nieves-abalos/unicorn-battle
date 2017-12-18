@@ -1,5 +1,6 @@
 (function() {
     var idTeam = -1;
+    var bufferFilter = new BufferFilter(5);
 
     function bindRecognition() {
 
@@ -7,11 +8,11 @@
             e.preventDefault();
             var videoUrl = document.querySelector(".video-url").value;
             var videoId = videoUrl.split("/watch?v=")[1];
-    
+
             function onPlayerReady(event) {
                 event.target.playVideo();
             }
-            
+
             var done = false;
             var lastVideo = '';
             function onPlayerStateChange(event) {
@@ -51,7 +52,7 @@
                     done = true;
 
                 } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
-                    
+
                     stopVoiceRecognizer()
                     // ToDo: Pop-up to publish score into the ranking?? :-/
                     // console.log("For: "+ player.getDuration() + " seconds")
@@ -74,12 +75,12 @@
             } else {
                 player.loadVideoById(videoId, 0);
             }
-            
-            
+
+
             return false;
         })
 
-        // OLD: Space bar feature  
+        // OLD: Space bar feature
         // document.addEventListener("keypress", function(e) {
         //     if (e.keyCode === 0 || e.keyCode === 32) {
         //         e.preventDefault();
@@ -115,8 +116,15 @@
             ngrms = ngrams(tokens, 3),
             matched = intersection(words, ngrms);
 
+        matched = matched.filter(function(item){
+          return bufferFilter.check(item);
+        });
+
         if (matched.length > 0) {
             console.log('matched', matched);
+            matched.forEach(function(item){
+              bufferFilter.insert(item);
+            });
 
             // update info of the team with the words matched
             var increment = updateTeam(idTeam, matched);

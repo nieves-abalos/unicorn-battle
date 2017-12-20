@@ -15,6 +15,7 @@
 
             var done = false;
             var lastVideo = '';
+
             function onPlayerStateChange(event) {
                 // if (event.data == YT.PlayerState.PLAYING && !done) {
                 videoUrl = document.querySelector(".video-url").value;
@@ -22,19 +23,22 @@
                 if (event.data == YT.PlayerState.PLAYING) {
                     // ToDo: Control video volume
                     // console.info("For: "+ player.getDuration() + " seconds")
-                    setListenTime( player.getDuration() );
+                    setListenTime(player.getDuration()); // ToDo: minus current time...
                     startVoiceRecognizer(processVoiceInput);
-                    console.log(lastVideo + " - " + videoId)
-                    if ( lastVideo != videoId ) {
+                    // console.log(lastVideo + " - " + videoId)
+                    if (lastVideo != videoId) { // If video has changed
                         idTeam = createTeam();
                         increment = {}
-                        //send event with this data:
+                            //send event with this data:
                         var rankTeams = getRankingTeam();
                         var rankWords = getRankingWords();
                         word_count = rankWords;
                         ranking = rankTeams;
-                        setRanking( idTeam, rankTeams, player.getVideoData().title );
+                        var title = player.getVideoData().title;
+                        setRanking(idTeam, rankTeams, title);
                         //drawWordCloud( rankWords, update );
+
+                        ga('send', 'event', 'new-video', videoId, title);
 
                         var team = getTeam(idTeam); // get scoreTotal
                         updateCurrentTeam(team);
@@ -52,13 +56,15 @@
                     done = true;
 
                 } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
-
+                    var score = getTeam(idTeam).scoreTotal;
+                    ga('send', 'event', (event.data == YT.PlayerState.ENDED ? "ended-video" : "paused-video"), videoId, score);
                     stopVoiceRecognizer()
-                    // ToDo: Pop-up to publish score into the ranking?? :-/
-                    // console.log("For: "+ player.getDuration() + " seconds")
-                    // console.log("Title: "+ player.getVideoData().title + "")
+                        // ToDo: Pop-up to publish score into the ranking?? :-/
+                        // console.log("For: "+ player.getDuration() + " seconds")
+                        // console.log("Title: "+ player.getVideoData().title + "")
                 }
             }
+
             function stopVideo() {
                 player.stopVideo();
             }
@@ -116,14 +122,14 @@
             ngrms = ngrams(tokens, 3),
             matched = intersection(words, ngrms);
 
-        matched = matched.filter(function(item){
-          return bufferFilter.check(item);
+        matched = matched.filter(function(item) {
+            return bufferFilter.check(item);
         });
 
         if (matched.length > 0) {
             console.log('matched', matched);
-            matched.forEach(function(item){
-              bufferFilter.insert(item);
+            matched.forEach(function(item) {
+                bufferFilter.insert(item);
             });
 
             // update info of the team with the words matched
@@ -140,13 +146,13 @@
         }
     }
 
-    function populateViz(){
-      var rankTeams = getRankingTeam();
-      var rankWords = getRankingWords();
-      word_count = rankWords;
-      ranking = rankTeams;
-      setRanking( idTeam, rankTeams );
-      drawWordCloud(null, update);
+    function populateViz() {
+        var rankTeams = getRankingTeam();
+        var rankWords = getRankingWords();
+        word_count = rankWords;
+        ranking = rankTeams;
+        setRanking(idTeam, rankTeams);
+        drawWordCloud(null, update);
     }
 
     function main() {

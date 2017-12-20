@@ -1,95 +1,117 @@
 <html>
-        <head>
 
-          <link rel="stylesheet" href="css/bootstrap.min.css">
-          <link rel="stylesheet" type="" href="css/unicorn.css">
-          <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900" rel="stylesheet">
+<head>
 
-          <script src="js/jquery-3.2.1.min.js"></script>
-          <script src="js/bootstrap.min.js"></script>
-          <script src="js/d3.min.js"></script>
-          <script src="js/cloud.js"></script>
-          <script src="js/PorterStemmer1980.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="" href="css/unicorn.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700,900" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/cloud.js"></script>
+    <script src="js/PorterStemmer1980.min.js"></script>
+    <!-- Google Analytics -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        </head>
-        <body>
+        ga('create', 'UA-111300241-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
 
-            <div class="container-fluid">
-                    <row>
-                        <div class="col-lg-6 col-sm-12 left left-side">
-                            <h2 class="unicornbattle-title">UnicornBattle</h2>
-                            <nav>
-                                <a href="#newpitch" class="new-pitch active">New Pitch</a>
-                                <a href="#ranking" class="global-ranking">Global Ranking</a>
-                            </nav>
-                            <form class="video-form">
-                                <div>
-                                    <h4><span class="img-circle">1</span> Insert the <strong>YouTube URL</strong> from your pitch in the box below</h4>
+</head>
 
-                                    <div class="video-input">
-                                        <input type="text" class="form-control video-url"  name="youtube-video" value="https://www.youtube.com/watch?v=VPKgRJMOKFA" placeholder="https://www.youtube.com/watch?v=">
-                                        <button type="submit" class="btn btn-large btn-block btn-success process-video">GO!</button>
-                                    </div>
-                                    <div id="video-area"></div>
+<body>
 
-                                    <h4><span class="img-circle">2</span> Play the full video with the <strong>speakers on</strong></h4>
+    <div class="container-fluid">
+        <row>
+            <div class="col-lg-6 col-sm-12 left left-side">
+                <h2 class="unicornbattle-title">UnicornBattle</h2>
+                <nav>
+                    <a href="#newpitch" class="new-pitch active">New Pitch</a>
+                    <a href="#ranking" class="global-ranking">Global Ranking</a>
+                </nav>
+                <form class="video-form">
+                    <div>
+                        <h4><span class="img-circle">1</span> Insert the <strong>YouTube URL</strong> from your pitch in the box below</h4>
 
-                                    <h4><span class="img-circle">3</span> Get the <strong>result!</strong></h4>
-
-
-                                </div>
-
-                            </form>
+                        <div class="video-input">
+                            <input type="text" class="form-control video-url" name="youtube-video" value="https://www.youtube.com/watch?v=VPKgRJMOKFA" placeholder="https://www.youtube.com/watch?v=">
+                            <button type="submit" onclick="ga('send', 'event', 'click', 'go', 'play-video');" class="btn btn-large btn-block btn-success process-video">GO!</button>
                         </div>
-                        <div class="col-lg-6 col-sm-12 right">
-                                <div class="row titlerow">
-                                    <h2 class="text-center startup-name">Team</h2>
-                                    </div>
-                                    <div class="row wordrow">
-                                        <div class="col-xs-12 col-md-12 word-cloud-container">
-                                                <div id="chart"></div>
-                                        </div>
-                                    </div>
+                        <div id="video-area"></div>
 
-                                    <div class="row rankingrow">
-                                        <div class="col-xs-1  col-md-1">
-                                            <div class="cloud left"></div>
-                                        </div>
-                                        <div class="col-xs-10  col-md-10">
-                                            <div class="rainbow"></div>
-                                            <div class="ranking-indicator">
-                                                <span class="team"></span>
-                                                <span class="points"></span>
-                                            </div>
-                                            <div class="ranking-indicator first">
-                                                <span class="team"></span>
-                                                <span class="points"></span>
-                                            </div>
-                                            <div class="ranking-indicator second">
-                                                <span class="team"></span>
-                                                <span class="points"></span>
-                                            </div>
-                                            <div class="ranking-indicator third">
-                                                <span class="team"></span>
-                                                <span class="points"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-1  col-md-1">
-                                            <div class="cloud right"></div>
-                                            <div class="unicorn-meme"><img src="img/unicorn-circle.gif" alt="" id="unicorn-gif" class="hidden"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <h4><span class="img-circle">2</span> Play the full video with the <strong>speakers on</strong></h4>
+
+                        <h4><span class="img-circle">3</span> Get the <strong>result!</strong></h4>
+
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-lg-6 col-sm-12 right">
+                <div class="row titlerow">
+                    <h2 class="text-center startup-name">Team</h2>
+                </div>
+                <div class="row wordrow">
+                    <div class="col-xs-12 col-md-12 word-cloud-container">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+
+                <div class="row rankingrow">
+                    <div class="col-xs-1  col-md-1">
+                        <div class="cloud left"></div>
+                    </div>
+                    <div class="col-xs-10  col-md-10">
+                        <div class="rainbow"></div>
+                        <div class="ranking-indicator">
+                            <span class="team"></span>
+                            <span class="points"></span>
                         </div>
-                    </row>
+                        <div class="ranking-indicator first">
+                            <span class="team"></span>
+                            <span class="points"></span>
+                        </div>
+                        <div class="ranking-indicator second">
+                            <span class="team"></span>
+                            <span class="points"></span>
+                        </div>
+                        <div class="ranking-indicator third">
+                            <span class="team"></span>
+                            <span class="points"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-1  col-md-1">
+                        <div class="cloud right"></div>
+                        <div class="unicorn-meme"><img src="img/unicorn-circle.gif" alt="" id="unicorn-gif" class="hidden"></div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </row>
 
 
 
-          <script src="js/utils.js"></script>
-          <script src="js/words.js"></script>
-          <script src="js/unicorn-words.js"></script>
-          <script src="js/unicorn-voice.js"></script>
-          <script src="js/functions.js"></script>
-          <script src="js/main.js"></script>
-        </body>
-      </html>
+    <script src="js/utils.js"></script>
+    <script src="js/words.js"></script>
+    <script src="js/unicorn-words.js"></script>
+    <script src="js/unicorn-voice.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

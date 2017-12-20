@@ -1,15 +1,14 @@
-
 var word_count = {}
-var width = $(document).width()/2;
+var width = $(document).width() / 2;
 var height = $(document).height() - 320;
 
-function drawWordCloud( currentWords, callback ){
+function drawWordCloud(currentWords, callback) {
 
     var mod_words = {}
-    for (var w in word_count){
+    for (var w in word_count) {
         if (word_count.hasOwnProperty(w)) {
-            if (word_count[w] > 400) mod_words[w] = parseFloat(word_count[w])*2;
-            mod_words[w] = parseFloat(word_count[w])/10;
+            if (word_count[w] > 400) mod_words[w] = parseFloat(word_count[w]) * 2;
+            mod_words[w] = parseFloat(word_count[w]) / 10;
         }
     }
 
@@ -20,18 +19,17 @@ function drawWordCloud( currentWords, callback ){
     var length = 100;
 
     var fill = d3.scale.category20();
-    var color = d3.scale.linear().domain([1,length])
-                    .interpolate(d3.interpolateHcl)
-                    .range([d3.rgb(color2), d3.rgb(color1)]);
+    var color = d3.scale.linear().domain([1, length])
+        .interpolate(d3.interpolateHcl)
+        .range([d3.rgb(color2), d3.rgb(color1)]);
 
     var word_entries = d3.entries(word_count);
 
     var xScale = d3.scale.linear()
         .domain([0, d3.max(word_entries, function(d) {
             return d.value;
-        })
-        ])
-        .range([12,100]);
+        })])
+        .range([12, 100]);
 
     d3.layout.cloud().size([width, height])
         .timeInterval(20)
@@ -52,7 +50,7 @@ function drawWordCloud( currentWords, callback ){
             .append("g")
             .attr("transform", "translate(" + [width >> 1, height >> 1] + ")")
             .selectAll("text")
-            .data( words )
+            .data(words)
             .enter().append("text")
             .style("font-size", function(d) { return xScale(d.value) + "px"; })
             .style("font-family", "Raleway")
@@ -81,26 +79,27 @@ function drawWordCloud( currentWords, callback ){
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
             })
             .text(function(d) { return d.key; });
-            if (callback) callback()
+        if (callback) callback()
     }
 
     d3.layout.cloud().stop();
 }
 
-var fua = new Audio('sound/fua.wav');
+var fua = new Audio('sound/fua3.wav');
 
 
 const MAX_RANKING = 20000;
+
 function update() {
     console.log("update")
-    // setRanking( ranking );
-    // setIncrement( current );
+        // setRanking( ranking );
+        // setIncrement( current );
 }
 
-function setRanking( idTeam, ranking, currentStartupName ) {
+function setRanking(idTeam, ranking, currentStartupName) {
     console.log(ranking)
     var teamName = document.getElementsByClassName("startup-name")[0];
-    teamName.innerHTML = currentStartupName || "Team "+idTeam;
+    teamName.innerHTML = currentStartupName || "Team " + idTeam;
     var _ranking = [];
     for (var team in ranking) {
         if (ranking.hasOwnProperty(team))
@@ -115,10 +114,10 @@ function setRanking( idTeam, ranking, currentStartupName ) {
     var teams = document.getElementsByClassName("team");
     var points = document.getElementsByClassName("points");
 
-    for (let i = 0;  i < indicators.length-1; i++) {
+    for (let i = 0; i < indicators.length - 1; i++) {
         if (_ranking[i]) {
             let pos = getRankingPos(_ranking[i][1]);
-            indicators[i+1].setAttribute("style", "left: "+pos+"%");
+            indicators[i + 1].setAttribute("style", "left: " + pos + "%");
             // switch (i) {
             //     case 0:
             //         teams[i+1].textContent = `🥇`
@@ -129,44 +128,44 @@ function setRanking( idTeam, ranking, currentStartupName ) {
             //     case 2:
             //         teams[i+1].textContent = `🥉`
             //         break;
-            
+
             //     default:
             //         break;
             // }
-            teams[i+1].innerHTML = `${i+1}&ordm;`; //"T"+ _ranking[i][0];
-            points[i+1].innerHTML = ""+_ranking[i][1];
+            teams[i + 1].innerHTML = `${i+1}&ordm;`; //"T"+ _ranking[i][0];
+            points[i + 1].innerHTML = "" + _ranking[i][1];
         }
     }
 
 }
 
-function getRankingPos( value ) {
+function getRankingPos(value) {
     return (value * 100) / MAX_RANKING;
 }
 
 var increment = {}
 
-function setIncrement( current ) {
+function setIncrement(current) {
     var unicorngif = document.getElementById("unicorn-gif");
 
-    if (Object.keys(current).length > 0){
+    if (Object.keys(current).length > 0) {
 
-            Object.assign(increment, current);
-            for (var w in current){
-                if (current.hasOwnProperty(w)) {
-                    //if (word_count[w] > 400) mod_words[w] = parseFloat(word_count[w])*2;
-                    word_count[w] = word_count[w] + current[w];
-                }
+        Object.assign(increment, current);
+        for (var w in current) {
+            if (current.hasOwnProperty(w)) {
+                //if (word_count[w] > 400) mod_words[w] = parseFloat(word_count[w])*2;
+                word_count[w] = word_count[w] + current[w];
             }
+        }
 
-            drawWordCloud( increment )
+        drawWordCloud(increment)
 
+        unicorngif.classList.toggle("hidden");
+        fua.play();
+        fua.currentTime = 0
+        setTimeout(function() {
             unicorngif.classList.toggle("hidden");
-            fua.play();
-            fua.currentTime = 0
-            setTimeout(function() {
-                unicorngif.classList.toggle("hidden");
-            }, 1200)
+        }, 1200)
     }
 
 }
@@ -178,9 +177,9 @@ function updateCurrentTeam(team) {
 
 
     let pos = getRankingPos(team.scoreTotal);
-    indicators[0].setAttribute("style", "left: "+pos+"%");
+    indicators[0].setAttribute("style", "left: " + pos + "%");
     teams[0].innerHTML = 'YOU'; //"t"+ team.teamId;
-    points[0].innerHTML = ""+ team.scoreTotal;
+    points[0].innerHTML = "" + team.scoreTotal;
 
 }
 
@@ -191,7 +190,7 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
     // drawWordCloud(null, update);
 
@@ -215,7 +214,3 @@ $( document ).ready(function() {
     // }, 3000)
 
 });
-
-
-
-

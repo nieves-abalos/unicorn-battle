@@ -85,7 +85,7 @@ function drawWordCloud(currentWords, callback) {
     d3.layout.cloud().stop();
 }
 
-var fua = new Audio('sound/fua3.wav');
+var fua = new Audio('sound/fua5.wav');
 
 
 const MAX_RANKING = 20000;
